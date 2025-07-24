@@ -10,7 +10,7 @@ Funcionalidad basada en:
 - Workaround específico para Windows 11, donde `FlashWindowEx` está bloqueado
 - Control del parpadeo mediante `TimerSys`
 
-> Incluye una documentación técnica detallada en `/DOCS/Documentación_ALERTAS.pdf`
+> Incluye una documentación técnica detallada en `/Documentación_ALERTAS.pdf`
 
 ## 🧠 Autor
 
