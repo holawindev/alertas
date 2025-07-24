@@ -1,0 +1,230 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : Inicio
+ major_version : 30
+ minor_version : 0
+ type : 2
+ description : ""
+ subtype : 0
+ options : 256
+window :
+ name : Inicio
+ identifier : 0x28667aed014c54f5
+ internal_properties : HwAAAB4AAAAUp2arDJgTDycLw1z/diX6OiD66aCq0upD6AzRwJClwRG8LZtfecYpHrDpVdUw18KTFjSc0hh+1+xhJnSNs07VONiB5A9+Ay8PJ89pGgLHxLGmLSuuCnCyx+xQ6ygrFZZhzkQAD0fG5lTpYnMDAFWsWDx8yOUK7Ujqh6wSdRCFPny1bbbY0TcMyCKrKIABSp7McplXFxIKE+54xZTgTXp68KQVJSTN6IpzymXqOJEAAWJulkcFTH1dK2gy9z8Z5ixf2qdyNdc7Nz3H5dKQi1HeCCS64a18QukQ4CO33G8+knDJNFEBiKFv1yEHEu3LRVYorl8JIv/EcYOAXp/oBj8f64pdc4s79hxaDetIPv8b0ijg6GhD9qqWGV1kIcVsy5XPow1W39y9XFDiqko3H+kL+Glfzt+JlEN0dApip57D6gUgWGQd3iaqEVKJrnYWCcFYu228kz858IZmCLQUSEAP52fQGHbbGxJaRR9TbVKcGOTn34JIxai2XBFjm0/emK29lYnN0kZBiaSRKQ+tYHiF5M7lN8qlLTt4LcBVXSGOk6wiLTcaq1ajd/dLsgomqUQeQDwU3MPeiFDPvkf83HRSvt/g3DQtJD9B/1FBS3Rv7fxfqIOc41pjFkA1HC5pNbZNxUnJMkOiHApDx6UTE4pBr2PpVEtMUvyrAUWxFOQDEA==
+ properties :
+  width : 1024
+  height : 768
+  widthClient : 1022
+  heightClient : 736
+ style : {}
+ controls : []
+ menu :
+  name : _Menu
+  identifier : 0x292573e513b5f221
+  internal_properties : HwAAAB4AAADnnckPeVuopxVzs3bH3h2yUwlVS5B3C3lCuQ51hOrRH5xlx+JsAdfePnKtdYtxjOyXayddrf+X14XXgfhTSXeA+RZ0RRNnwFWr3yomVCAgAku8RMjfdjsaBEkIIM5VaXPjq5mhg2t5m5PFJWmj5dNReV613iiQWTqBPgsU8vzSUEbaZhOuuWYcQDJNg8ehxHqyalqJ6PTjRmXsu4dIWQhwM5Wy22VF8nzwEWLpsAq/c/lB6ok3vcmYurf+xuubiaAux+iYRUd5NP8zFL8901RLpS0w9pviXSoWEEGX5cAtm0QQ58gWgQ==
+  properties : {}
+  style : {}
+  options : []
+ languages :
+  - es-ES
+ popup_menus : []
+ message_bar :
+  internal_properties : HwAAAB4AAAAGhKkh5ZPvD1IGufEWzfQ/iMrhHXC2Br3OqR0NIXWRCbpw0wZcjkeecVjJnMlE8nQDtxnyQ+2GVded5Yh3MzoUnX9OVgfLEUnywkZwnVrSWt94DDAqPz4zmY0ELBrTYms0KeU=
+ actionbar : {}
+ code_elements :
+  type_code : 1
+  p_codes :
+   -
+     code : |1-
+      PROCEDURE MyWindow()
+      gnFlashCount	is int
+      gnOriginalIcon	is int
+      gnAlertIcon		is int
+      gnTimerNumber	is int
+   -
+     code : |1+
+      AlertBar()
+      
+     type : 34
+   -
+     code : |1+
+      
+      
+     type : 234
+   -
+     code : |1+
+      
+      
+     type : 165
+   -
+     code : |1+
+      
+      
+     type : 177
+   -
+     type : 180
+     enabled : false
+   -
+     type : 230
+     enabled : false
+   -
+     code : |1+
+      
+      
+     type : 2
+  procedures :
+   -
+     name : AlertBar
+     internal_properties : HwAAAB4AAACEEK1eFHmco81HBkTZ46Kw3MWu1WEX8a0joQ/iNUMRtRJJoIF+tHDFttM3/WyRWn7PZ2aCqorXAWuYOXxz5/PgyW5oFr+R9SSvGEVHKJ7GsEB8Tb+7egM+4s8hZtKH8Q==
+     procedure_id : 1758239476454103151
+     type_code : 14
+     code : |1-
+      //!
+      //! @brief Muestra una alerta visual en la taskbar de Windows mediante parpadeo del ícono
+      //!
+      //! @note Descripción de los parámetros de entrada/salida de 'AlertBar':
+      //! No tiene parámetros de entrada ni salida.
+      //!
+      //! Modo de funcionamiento:
+      //! 1. Verifica si la ventana está en primer plano - si es así, no hace nada
+      //! 2. Guarda el ícono original de la ventana
+      //! 3. Inicia un timer que alterna cada 500ms entre el ícono original y uno de exclamación
+      //! 4. Se detiene automáticamente después de 10 parpadeos o si el usuario activa la ventana
+      //!
+      //! Casos particulares y límites:
+      //! - Solo funciona si la ventana NO está en primer plano
+      //! - Máximo 10 parpadeos (5 segundos de duración)
+      //! - Se detiene inmediatamente si el usuario clickea la ventana
+      //! - Workaround específico para Windows 11 donde FlashWindowEx está bloqueado
+      //! - Requiere variables globales: gnFlashCount, gnOriginalIcon, gnTimerNumber
+      //!
+      //! El desarrollador (JBARBAT) creó esta solución como alternativa a FlashWindowEx
+      //! que no funciona en Windows 11 debido a nuevas políticas de seguridad
+      //!
+      //! Procedimiento manual:
+      //! El procedimiento se ejecuta manualmente, durante una llamada en el código
+      //! Internamente usa TimerSys para crear el efecto de parpadeo
+      //!
+      
+      procedure AlertBar()
+      
+      
+      // ========================================================================
+      // VALIDACIÓN INICIAL: Solo alertar si la ventana está en background
+      // ========================================================================
+      
+      // Obtener handle de la ventana que está actualmente en primer plano
+      hForegroundWindow is int = CallDLL32("USER32", "GetForegroundWindow")
+      
+      // Si nuestra ventana ya está activa, no tiene sentido hacer alerta
+      if Handle() = hForegroundWindow then
+      	Trace("Ventana ya está en primer plano - no hacer alerta")
+      	return  // Salir sin hacer nada
+      end
+      
+      Trace("=== Iniciando alerta - ventana en background ===")
+      
+      // ========================================================================
+      // PREPARACIÓN: Guardar estado original y configurar variables
+      // ========================================================================
+      
+      // Obtener el ícono actual de la ventana (WM_GETICON, ICON_SMALL)
+      // Esto nos permite restaurarlo al final del parpadeo
+      gnOriginalIcon = CallDLL32("USER32", "SendMessageW", Handle(), 0x7F, 0, 0)
+      Trace("Ícono original guardado: " + gnOriginalIcon)
+      
+      // Inicializar contadores y configurar timer
+      gnFlashCount	= 0                                    // Resetear contador de parpadeos
+      gnTimerNumber	= TimerSys(FlashIconTimer, 50)        // Timer cada 500ms (50 centésimas)
+      
+      //!
+      //! @brief Procedimiento interno que maneja cada "tick" del parpadeo del ícono
+      //!
+      //! @note Descripción del funcionamiento de 'FlashIconTimer':
+      //! Se ejecuta automáticamente cada 500ms mediante TimerSys
+      //!
+      //! Modo de funcionamiento:
+      //! 1. Verifica si el usuario activó la ventana (auto-detección)
+      //! 2. Si está activa, restaura el ícono y detiene el timer
+      //! 3. Si no, incrementa contador y verifica límite (10 parpadeos)
+      //! 4. Alterna entre ícono original (impares) e ícono de alerta (pares)
+      //! 
+      //! Casos particulares:
+      //! - Se detiene automáticamente si usuario activa ventana
+      //! - Límite máximo de 10 parpadeos para evitar molestia
+      //! - Usa ícono IDI_EXCLAMATION (32516) del sistema Windows
+      //! - Modifica tanto ícono pequeño (0x80,0) como grande (0x80,1)
+      	//!
+      	INTERNAL PROCEDURE FlashIconTimer()
+      
+      		// ================================================================
+      		// AUTO-DETECCIÓN: Parar si el usuario activó la ventana
+      		// ================================================================
+      
+      		// Verificar en cada tick si el usuario clickeó/activó nuestra ventana
+      		hForegroundWindow  = CallDLL32("USER32", "GetForegroundWindow")
+      		if Handle() = hForegroundWindow then
+      			// Usuario activó la ventana - misión cumplida, parar alerta
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 0, gnOriginalIcon)  // Restaurar ícono pequeño
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 1, gnOriginalIcon)  // Restaurar ícono grande
+      			EndTimerSys(gnTimerNumber)                                               // Detener timer
+      			Trace("Alerta detenida - usuario activó ventana")
+      			return
+      		end
+      
+      		// ================================================================
+      		// CONTROL DE LÍMITE: Máximo 10 parpadeos
+      		// ================================================================
+      
+      		gnFlashCount++  // Incrementar contador de parpadeos
+      
+      		// Si llegamos al límite, restaurar y terminar
+      		if gnFlashCount > 10 then
+      			// Restaurar ícono original en ambos tamaños (pequeño y grande)
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 0, gnOriginalIcon)  // WM_SETICON, ICON_SMALL
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 1, gnOriginalIcon)  // WM_SETICON, ICON_BIG
+      			EndTimerSys(gnTimerNumber)                                               // Detener timer
+      			Trace("Ícono original restaurado")
+      			return
+      		end
+      
+      		// ================================================================
+      		// LÓGICA DE ALTERNANCIA: Par = Alerta, Impar = Original
+      		// ================================================================
+      
+      		if gnFlashCount % 2 = 0 then
+      			// Números pares (2,4,6,8,10) = MOSTRAR ÍCONO DE ALERTA
+      
+      			// Cargar ícono de exclamación del sistema (triángulo amarillo con !)
+      			hAlert is int = CallDLL32("USER32", "LoadIconW", 0, 32516)              // IDI_EXCLAMATION
+      
+      			// Aplicar ícono de alerta en ambos tamaños para máxima visibilidad
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 0, hAlert)          // WM_SETICON, ICON_SMALL
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 1, hAlert)          // WM_SETICON, ICON_BIG
+      
+      			Trace("Cambiado a ícono de exclamación")
+      		else
+      			// Números impares (1,3,5,7,9) = RESTAURAR ÍCONO ORIGINAL
+      
+      			// Volver al ícono original para crear efecto de parpadeo
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 0, gnOriginalIcon)  // WM_SETICON, ICON_SMALL
+      			CallDLL32("USER32", "SendMessageW", Handle(), 0x80, 1, gnOriginalIcon)  // WM_SETICON, ICON_BIG
+      
+      			Trace("Vuelto a ícono original")
+      		end
+      	end
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : HwAAAB4AAAC7nJVfZ2kBpDeosTpK6I68RLLpqyvPDQ4sPyQ80kxeZtp4HFV+S4Nl4d8ddIYnV9pfe62HNdBNKQHoHPz+j0l0Rv9M9hbCP+0oQ+Q6iP5/WhSXS17xgUy+WbE=
+  original_name : Modele1
+resources :
+ string_res :
+  identifier : 0x18667ae800034296
+  internal_properties : HwAAAB4AAAD7A717YHCgiCC98KiUAKAetuUy+7y/bMf5GleDmRLEBFW7TTjMiEWcFq+mxkBE8/nwPDIKkJ8SADYQ
+custom_note :
+ internal_properties : HwAAAB4AAAAw1yJwJOWnBFt8iy6Ww8JWR1G08XnjNT9VuwnlXBOxjoNDueSgBJd4Fg==
+rad :
+ internal_properties : HwAAAB4AAADk2Hz6/QT0adx8e89Zvm7g9bWRpROkGCmpSKmSd1HXAi8ev5F7h+hr
